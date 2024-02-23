@@ -52,8 +52,8 @@ controls.enableDamping = true;
 controls.enablePan = false;
 controls.enableZoom = false;
 
-//controls.autoRotate = true;
-//controls.autoRotateSpeed = 8;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 8;
 
 
 
