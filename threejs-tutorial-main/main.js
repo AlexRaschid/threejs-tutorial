@@ -7,14 +7,27 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'; //Do
 const scene = new THREE.Scene();
 
 //Create the shape: this case a sphere
+const boxGeometry = new THREE.BoxGeometry( 5, 5, 5 ); 
 const geometry = new THREE.SphereGeometry(3, 64, 64);
 const material = new THREE.MeshStandardMaterial({
   color: "#00ff83",
   roughness: 0.6,
 });
 
+const boxMesh = new THREE.Mesh(boxGeometry, material);
 const mesh = new THREE.Mesh(geometry, material);
+boxMesh.visible = false;
+scene.add(boxMesh);
 scene.add(mesh);
+
+//Swap between shapes
+document.getElementById("transformButton").addEventListener('click', () => {
+  mesh.visible = !mesh.visible;
+  boxMesh.visible = !boxMesh.visible;
+});
+
+
+
 
 //Sizes
 const sizes = {
@@ -80,7 +93,6 @@ const loop = () => {
 loop();
 
 //Timeline
-
 const tl = gsap.timeline({defaults: {duration: 1}});
 tl.fromTo(mesh.scale, {z:0,x:0,y:0}, {z:1,x:1,y:1},);
 tl.fromTo("nav", {y:"-100%"}, {y:"0%"});
